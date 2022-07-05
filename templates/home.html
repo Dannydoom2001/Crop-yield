@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Crop Yield Prediction</title>
+    <!-- Bootstrap CSS CDN -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
+    <!-- Font Awesome JS -->
+    <script src="https://kit.fontawesome.com/728d1d3dec.js" crossorigin="anonymous"></script>
+    <!-- jQuery CDN -->
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <!-- Popper.JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
+    <!-- Bootstrap JS -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
+<style>
+html {
+    scroll-behavior: smooth;
+}
+body {
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    background-color: #ff5050;
+}
+.title{
+	font-size: 40px;
+	text-align: center;
+	padding: 40px;
+	color: black;
+}
+.svgs {
+    position: fixed;
+}
+.page {
+    width: 100%;
+    height: 100vh;
+    position: relative;
+}
+
+.scrollIndicator{
+    position: absolute;
+    bottom: 12px;
+    height: 0;
+    width: 0;
+    border-left:  25px solid transparent;
+    border-right: 25px solid transparent;
+    border-top:   25px solid #f00;
+    animation: down 1.5s ease-in-out infinite;
+}
+@keyframes down{
+    0%{ transform: translateY(0);}
+    50%{ transform: translateY(100%);}
+    100%{ transform: translateY(0);}
+}
+
+
+
+#part2 {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+.text-blue {
+    color: #5e72e4;
+}
+.text-green {
+    color: #2dce89;
+}
+.text-orange {
+    color: #fb6340;
+}
+.myCard-body{
+	font-size: 23px;
+	padding-left: 300px;
+	padding-right: 300px;
+	padding-bottom: 100px;
+}
+</style>
+</head>
+<body>
+    <div class="page" id="part1">
+            <div class="heading">
+                <div class="title" style="color: black;"><b>Crop Yield Prediction</b></div>
+            </div>            
+       
+            <div class="myCard-body">Provide information for the crop like its type, the area of the farm, the soil category and the district in which it is to be grown Random Forest ML model, trained on past 20 years of data, is used to predict the approximate crop yield</div>
+        
+        
+        <div class="card" style="margin-left: 250px; margin-right: 250px; margin-bottom: 700px;">
+            <div class="card-header text-center">
+                <h3><u>Crop Yield Predictor</u></h3>
+            </div>
+
+		<form method="post" action="/" enctype="multipart/form-data">
+            <div class="card-body">
+                <div class="form-group">
+                    <label for="district">District:</label>
+                    <select name="district" id="district" class="form-control">
+				<option value="AHMEDNAGAR">AHMEDNAGAR</option>
+				<option value="AKOLA">AKOLA</option>
+				<option value="AMRAVATI">AMRAVATI</option>
+				<option value="AURANGABAD">AURANGABAD</option>
+				<option value="BEED">BEED</option>
+				<option value="BHANDARA">BHANDARA</option>
+				<option value="BULDHANA">BULDHANA</option>
+				<option value="CHANDRAPUR">CHANDRAPUR</option>
+				<option value="DHULE">DHULE</option>
+				<option value="GADCHIROLI">GADCHIROLI</option>
+				<option value="GONDIA">GONDIA</option>
+				<option value="HINGOLI">HINGOLI</option>
+				<option value="JALGAON">JALGAON</option>
+				<option value="JALNA">JALNA</option>
+				<option value="KOLHAPUR">KOLHAPUR</option>
+				<option value="LATUR">LATUR</option>
+				<option value="NAGPUR">NAGPUR</option>
+				<option value="NANDED">NANDED</option>
+				<option value="NASHIK">NASHIK</option>
+				<option value="OSMANABAD">OSMANABAD</option>
+				<option value="PARBHANI">PARBHANI</option>
+				<option value="PUNE">PUNE</option>
+				<option value="SANGLI">SANGLI</option>
+				<option value="SATARA">SATARA</option>
+				<option value="THANE">THANE</option>
+				<option value="WARDHA">WARDHA</option>
+				<option value="WASHIM">WASHIM</option>
+				<option value="YAVATMAL">YAVATMAL</option>
+			  </select>
+                </div>
+                <div class="form-group">
+                    <label for="crop">Crop:</label>
+                    <select name="crop" id="crop" class="form-control">
+				<option value="Jowar">Jowar</option>
+				<option value="Bajra">Bajra</option>
+				<option value="Wheat">Wheat</option>
+			  </select>
+                </div>
+                <div class="form-group">
+                    <label for="area">Area(in acres):</label>
+                    <input type="number" min="100" max="10000000" id="area" placeholder="Enter area" class="form-control" name="area">
+                </div>
+                <div class="form-group">
+                    <label for="soil">Soil:</label>
+                    <select name="soil" id="soil" class="form-control">
+				<option value="chalky">chalky</option>
+				<option value="clay">clay</option>
+				<option value="loamy">loamy</option>
+				<option value="peaty">peaty</option>
+				<option value="sandy">sandy</option>
+				<option value="silt">silt</option>
+				<option value="silty">silty</option>
+			  </select>
+                </div>
+                <div class="row">
+                    <button class="btn btn-primary mx-auto" id="submit" style="background-color: #ff5050; color: black; border: none;">Predict</button>
+                </div>
+            </div>
+		</form>
+
+            <div class="card-footer" id="prediction" >
+			{{ msg }}
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
